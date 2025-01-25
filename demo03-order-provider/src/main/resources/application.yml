@@ -1,0 +1,14 @@
+server:
+  port: 8110
+spring:
+  application:
+    name: order-service
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: fangfang
+    password: 123456
+    virtual-host: /sh221109
+    publisher-returns: true #启用生产者确认回调，默认false
+    publisher-confirm-type: correlated #使用额外的线程池线程来调用回调方法
+    #配置mq生者者确认回调

@@ -1,0 +1,31 @@
+server:
+  port: 8120
+spring:
+  application:
+    name: stock-service
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: fangfang
+    password: 123456
+    virtual-host: /sh221109
+    listener:
+      #消费者会通过额外的线程消费消息，type配置使用的线程池
+      type: simple
+      simple:
+        #配置type为simple时，消费者确认消息的方式
+        #auto :消费消息时不会手动ack,消费出现异常，消息会重新归队，消费者可以再次消费
+        #auto和之前的手动ack不一样，auto时springboot分封装后的自动ack
+        #none 相当于mq原生消息的自动ack,消息一旦被消费者接受立即ack
+        #manual 手动ack 需要我们在消费者代码中 业务执行结束 手动确认消息的消费
+        acknowledge-mode: manual
+
+        #能者多劳+多线程
+        # 一次性获取消息的数量
+        prefetch: 5
+        # 允许并发处理消息的线程数
+        concurrency: 3
+        # 最大允许并发处理消息的线程数
+        max-concurrency: 5
+
+
