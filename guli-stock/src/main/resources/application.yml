@@ -1,0 +1,29 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: guli-stock
+  datasource:
+    url: jdbc:mysql://localhost/guli_stock?useSSL=false&serverTimezone=GMT%2B8
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+  jpa:
+    show-sql: true
+  sleuth:
+    sampler:
+      #采样率：所有请求数据被采样到zipkin
+      probability: 1.0
+  zipkin:
+    # 残阳数据提交的服务地址
+    base-url: http://localhost:9411
+    sender:
+      # 采用http方式提交采样数据
+      type: web
+eureka:
+  instance:
+    prefer-ip-address: true
+    ip-address: localhost
+  client:
+    service-url:
+      defaultZone: http://localhost:9000/eureka/

@@ -1,0 +1,19 @@
+server:
+  port: 8082
+spring:
+  application:
+    name: guli-order
+  datasource:
+    url: jdbc:mysql://localhost/guli_order?useSSL=false&serverTimezone=GMT%2B8
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+  jpa:
+    show-sql: true
+eureka:
+    instance:
+      prefer-ip-address: true
+      ip-address: localhost
+    client:
+      service-url:
+        defaultZone: http://localhost:9000/eureka/

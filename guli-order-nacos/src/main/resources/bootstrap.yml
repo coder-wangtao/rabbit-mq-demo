@@ -1,0 +1,33 @@
+#配置中心配置文件
+# springboot项目加载文件优先级比application高
+spring:
+  application:
+    name: order-nacos-service  #查找默认配置文件时使用该名称
+#  cloud:
+#    nacos:
+#      #配置中心地址
+#      config:
+#        server-addr: localhost:8848
+#        #加载配置文件时的扩展名
+#        file-extension: properties
+#        #加载非默认配置文件的列表
+#        extension-configs:
+#          #表示一个配置文件的配置
+#          - data-id: mysql-conf.properties  #表示要加载的配置文件的名称
+#            group: DEV_GROUP  # 要加载的配置文件所在的租  组加文件名必须唯一
+#            refresh: true #监听配置中心配置文件的改动
+#          - data-id: redis-conf.properties  #表示要加载的配置文件的名称
+#            group: DEV_GROUP  # 要加载的配置文件所在的租  组加文件名必须唯一
+  cloud:
+    nacos:
+      config:
+        server-addr: localhost:8848
+        file-extension: properties
+        namespace: 1f298449-e16e-4a02-99e3-51faecc98c03
+        extension-configs:
+          - data-id: mysql-conf.properties
+            group: DEFAULT_GROUP
+          - data-id: redis-conf.properties
+            group: DEFAULT_GROUP
+
+

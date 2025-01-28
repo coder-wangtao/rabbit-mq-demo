@@ -1,0 +1,52 @@
+server:
+  port: 8082
+spring:
+  application:
+    name: guli-order
+  datasource:
+    url: jdbc:mysql://localhost/guli_order?useSSL=false&serverTimezone=GMT%2B8
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+  jpa:
+    show-sql: true
+  sleuth:
+    sampler:
+      #采样率：所有请求数据被采样到zipkin
+      probability: 1.0
+  zipkin:
+    # 残阳数据提交的服务地址
+    base-url: http://localhost:9411
+    sender:
+      # 采用http方式提交采样数据
+      type: web
+
+eureka:
+    instance:
+      prefer-ip-address: true
+      ip-address: localhost
+    client:
+      service-url:
+        defaultZone: http://localhost:9000/eureka/
+ribbon:
+  #建立连接的超时时间
+  ConnectTimeout: 5000
+  #连接建立成功 目标服务业执行时间的超时时间
+  ReadTimeout: 5000
+
+  MaxAutoRetries: 0  #同一台实例的最大重试次数，不包括首次调用
+  MaxAutoRetriesNextServer: 1  #重试负载均衡其他的实例最大重试次数，不包括首次调用
+logging:
+  level:
+    root: info
+    com.wangtao.feign: debug
+#以web的方式暴露当前项目的数据流
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+hystrix:
+  dashboard:
+    #允许监控当前项目数据的服务器
+    proxy-stream-allow-list: 'localhost'

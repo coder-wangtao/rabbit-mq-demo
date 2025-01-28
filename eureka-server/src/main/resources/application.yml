@@ -1,0 +1,18 @@
+server:
+  port: 9000
+spring:
+  application:
+    name: eureka-server
+eureka:
+  client:
+    #获取注册中心的服务的列表：注册中心是管理服务列表的 所以不需要获取
+    fetch-registry: false
+    #s是否将自己注册到注册中心
+    register-with-eureka: false
+    service-url:
+      defaultZone: http://${eureka.instance.ip-address}:${server.port}/eureka/
+    #  server:
+    #注册中心清除不在线的微服务的时间间隔 默认60s
+#    eviction-interval-timer-in-ms:
+  instance:
+    ip-address: localhost
